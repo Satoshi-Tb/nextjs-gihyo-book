@@ -1,31 +1,31 @@
-import useSWR from "swr";
-import { ApiContext, User } from "@/types";
+import useSWR from 'swr'
+import type { ApiContext, User } from '@/types'
 
 export type UseUserProps = {
   /**
    * 取得するユーザーID
    */
-  id: number;
+  id: number
   /**
    * 初期状態
    */
-  initial?: User;
-};
+  initial?: User
+}
 
 export type UseUser = {
   /**
    * 取得するユーザー
    */
-  user?: User;
+  user?: User
   /**
    * ロードフラグ
    */
-  isLoading: boolean;
+  isLoading: boolean
   /**
    * エラーフラグ
    */
-  isError: boolean;
-};
+  isError: boolean
+}
 
 /**
  * ユーザーAPI（個別取得）のカスタムフック
@@ -34,14 +34,14 @@ export type UseUser = {
  */
 const useUser = (context: ApiContext, props: UseUserProps): UseUser => {
   const { data, error } = useSWR<User>(
-    `${context.apiRootUrl.replace(/\/$/g, "")}/users/${props.id}`
-  );
+    `${context.apiRootUrl.replace(/\/$/g, '')}/users/${props.id}`,
+  )
 
   return {
     user: data ?? props.initial,
     isLoading: !error && !data,
     isError: !!error,
-  };
-};
+  }
+}
 
-export default useUser;
+export default useUser
