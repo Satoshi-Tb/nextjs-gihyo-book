@@ -46,15 +46,16 @@ const preview: Preview = {
 };
 export default preview;
 
+//TODO 課題。有効にすると、default定義重複エラーが発生し、storybookにコンポーネントが表示されない
 // next/imageの差し替え
-const OriginalNextImage = NextImage.default;
+// const OriginalNextImage = NextImage.default;
 
-Object.defineProperty(NextImage, "default", {
-  configurable: true,
-  value: (props) =>
-    typeof props.src === "string" ? (
-      <OriginalNextImage {...props} unoptimized blurDataURL={props.src} />
-    ) : (
-      <OriginalNextImage {...props} unoptimized />
-    ),
-});
+// Object.defineProperty(NextImage, "default", {
+//   configurable: true,
+//   value: (props) =>
+//     typeof props.src === "string" ? (
+//       <OriginalNextImage {...props} unoptimized blurDataURL={props.src} />
+//     ) : (
+//       <OriginalNextImage {...props} unoptimized />
+//     ),
+// });
